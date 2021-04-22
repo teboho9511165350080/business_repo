@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1111"
+    tools:context=".AddDebitorExisting">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/Accesible_constraint_layout"
+        android:layout_width="347dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="152dp"
+        android:background="@drawable/pentagon"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/accessiableAmountTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:hint="@string/issuable_amount"
+            android:textColor="@color/blue"
+            android:textColorHint="#395ec6"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/accessiableAmountValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/issuable_amount_value"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/accessiableAmountTitleTextView"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="@id/accessiableAmountTitleTextView"
+            app:layout_constraintTop_toBottomOf="@id/accessiableAmountTitleTextView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/lend_icon_ID"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/blue"
+            android:contentDescription="@string/todo_debited_imageView"
+            android:src="@drawable/ic_lend_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/accessiableAmountValueTextView"
+            app:layout_constraintHorizontal_bias="0.047"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.529"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="4dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/buttonAddDebitorExisitng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/button"
+        android:text="@string/button_add_debitor_existing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switchApplyInterestMissedMonth"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimalExistingDebitor"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/edit"
+        android:drawableStart="@drawable/ic_money"
+        android:drawableLeft="@drawable/ic_money"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="20dp"
+
+
+        android:hint="@string/debited_amount_existing"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:padding="20dp"
+        android:textColorHint="#395ec6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Accesible_constraint_layout"
+        app:layout_constraintVertical_bias="0.111" />
+
+    <Switch
+        android:id="@+id/switchApplyInterestExisting"
+        android:layout_width="339dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="56dp"
+        android:checked="true"
+        android:text="@string/apply_interest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextNumberDecimalExistingDebitor" />
+
+    <Switch
+        android:id="@+id/switchApplyInterestMissedMonthExisting"
+        android:layout_width="339dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="20dp"
+        android:checked="true"
+        android:text="@string/apply_interest_on_missed_payments"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddDebitorExisitng"
+        app:layout_constraintEnd_toEndOf="@id/switchApplyInterestExisting"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/switchApplyInterestExisting"
+        app:layout_constraintTop_toBottomOf="@id/switchApplyInterestExisting"
+        app:layout_constraintVertical_bias="0.05" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

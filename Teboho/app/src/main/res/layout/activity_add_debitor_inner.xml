@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddDebitorInner">
+
+
+    <EditText
+        android:id="@+id/editTextClientName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/edit"
+        android:drawableLeft="@drawable/ic_person"
+        android:drawablePadding="10dp"
+        android:hint="@string/added_debitor_name"
+
+
+        android:inputType="textPersonName"
+        android:padding="20dp"
+        android:textColorHint="#395ec6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <EditText
+        android:id="@+id/editTextSurname"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/edit"
+        android:drawableLeft="@drawable/ic_person"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="@string/added_debitor_surname"
+        android:inputType="textPersonName"
+        android:padding="20dp"
+        android:textColorHint="#395ec6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextClientName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextClientName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextClientName"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <EditText
+        android:id="@+id/editTextDebitedAmount"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/edit"
+        android:drawableLeft="@drawable/ic_money"
+        android:hint="@string/added_debitor_amount"
+
+        android:inputType="numberDecimal"
+        android:padding="20dp"
+        android:drawablePadding="10dp"
+        android:textColorHint="#395ec6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextSurname"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextSurname"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSurname"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <Button
+        android:id="@+id/DebitorAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/adding_debitor_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.841"
+        android:background="@drawable/button"/>
+
+    <Switch
+        android:id="@+id/switchApplyInterest"
+        android:layout_width="340dp"
+        android:layout_height="23dp"
+        android:checked="true"
+        android:text="@string/apply_interest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDebitedAmount"
+        app:layout_constraintStart_toStartOf="@+id/editTextDebitedAmount"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDebitedAmount"
+        app:layout_constraintVertical_bias="0.28" />
+
+    <Switch
+        android:id="@+id/switchApplyInterestMissedMonth"
+        android:layout_width="339dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/apply_interest_on_missed_payments"
+        android:checked="true"
+        app:layout_constraintBottom_toTopOf="@+id/DebitorAddButton"
+        app:layout_constraintEnd_toEndOf="@+id/switchApplyInterest"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/switchApplyInterest"
+        app:layout_constraintTop_toBottomOf="@+id/switchApplyInterest"
+        app:layout_constraintVertical_bias="0.013" />
+</androidx.constraintlayout.widget.ConstraintLayout>

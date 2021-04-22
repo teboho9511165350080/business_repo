@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCreditorInner">
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/edit"
+        android:drawableLeft="@drawable/ic_money"
+        android:drawablePadding="10dp"
+        android:padding="20dp"
+        android:textColorHint="#395ec6"
+
+
+        android:id="@+id/editCreditedAmount"
+        android:hint="@string/credited_amount"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.358" />
+
+    <Button
+        android:id="@+id/CreditorAddButton"
+        android:layout_width="307dp"
+        android:layout_height="55dp"
+        android:text="@string/subtract_creditor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCreditedAmount"
+        app:layout_constraintVertical_bias="0.274"
+        android:background="@drawable/button"/>
+
+    <Button
+        android:background="@drawable/button"
+        android:id="@+id/CreditorDeleteButton"
+        android:layout_width="309dp"
+        android:layout_height="56dp"
+        android:text="@string/delete_client_button"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/CreditorAddButton"
+        app:layout_constraintStart_toStartOf="@+id/CreditorAddButton"
+        app:layout_constraintTop_toBottomOf="@+id/CreditorAddButton"
+        app:layout_constraintVertical_bias="0.094" />
+</androidx.constraintlayout.widget.ConstraintLayout>

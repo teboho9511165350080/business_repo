@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1111"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/findMenuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="146dp"
+        android:layout_marginLeft="146dp"
+        android:layout_marginBottom="113dp"
+        android:layout_marginTop="550dp"
+        android:onClick="onClickFindMenu"
+        android:text="@string/find_menu_button"
+        android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.922" />
+
+    <ImageView
+        android:id="@+id/syncAll"
+        android:layout_width="48dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="start"
+        android:layout_marginStart="341dp"
+        android:layout_marginLeft="341dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/sync_new" />
+
+    <Spinner
+        android:id="@+id/menuContent"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="187dp"
+        android:layout_marginRight="187dp"
+        android:entries="@array/contents"
+        android:text="@string/menu_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.093" />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/availableBalance_constraint_layout"
+        android:layout_width="347dp"
+        android:layout_height="62dp"
+        android:layout_below="@+id/menuContent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:background="@drawable/pentagon"
+        android:padding="2dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/currentBalanceTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/available_balance_string"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/currentBalanceValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal"
+            android:hint="@string/balance_value"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/dollarSignId"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/todo_dollar"
+            android:layout_gravity="start"
+            app:srcCompat="@drawable/ic_money_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="4dp"
+            android:background="@color/blue"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/pentagon"
+        android:layout_gravity="center"
+        android:id="@+id/Debited_constraint_layout"
+        android:layout_width="347dp"
+        android:layout_height="62dp"
+        android:layout_below="@+id/availableBalance_constraint_layout"
+        android:layout_alignStart="@+id/availableBalance_constraint_layout"
+        android:layout_alignLeft="@+id/availableBalance_constraint_layout"
+        android:layout_alignEnd="@+id/availableBalance_constraint_layout"
+        android:layout_alignRight="@+id/availableBalance_constraint_layout"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="@+id/availableBalance_constraint_layout"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/availableBalance_constraint_layout"
+        app:layout_constraintTop_toBottomOf="@+id/availableBalance_constraint_layout">
+
+        <TextView
+            android:id="@+id/debitedAmountTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/debited_amount_string"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_marginTop="25dp"
+            android:id="@+id/debitedAmountValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/balance_value_debited_string"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/lend_icon_ID"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/todo_debited_imageView"
+            android:gravity="start"
+            android:src="@drawable/ic_lend_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="4dp"
+            android:background="@color/blue"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_gravity="center"
+        android:background="@drawable/pentagon"
+        android:id="@+id/invested_constraint_layout"
+        android:layout_width="347dp"
+        android:layout_height="62dp"
+        android:layout_below="@+id/Debited_constraint_layout"
+        android:layout_alignStart="@+id/Debited_constraint_layout"
+        android:layout_alignLeft="@+id/Debited_constraint_layout"
+        android:layout_alignEnd="@+id/Debited_constraint_layout"
+        android:layout_alignRight="@+id/Debited_constraint_layout"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="@+id/Debited_constraint_layout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Debited_constraint_layout"
+        app:layout_constraintTop_toBottomOf="@+id/Debited_constraint_layout">
+
+        <TextView
+            android:id="@+id/investedAmountTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/invested_amount_string"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_marginTop="25dp"
+            android:id="@+id/investedAmountValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/balance_value_string"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="4dp"
+            android:gravity="start"
+            android:id="@+id/investment_icon_ID"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/todo_invested_imageView"
+            android:src="@drawable/investment_icon2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_gravity="center"
+        android:background="@drawable/pentagon"
+        android:id="@+id/withdrawn_constraint_layout"
+        android:layout_width="347dp"
+        android:layout_height="62dp"
+        android:layout_below="@+id/invested_constraint_layout"
+        android:layout_alignStart="@+id/invested_constraint_layout"
+        android:layout_alignLeft="@+id/invested_constraint_layout"
+        android:layout_alignEnd="@+id/invested_constraint_layout"
+        android:layout_alignRight="@+id/invested_constraint_layout"
+        android:layout_marginTop="33dp"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="348dp">
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/withdrawnAmountTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/withdrawn_amount_string"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_marginTop="25dp"
+            android:id="@+id/withdrawnAmountValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/balance_value_string"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="4dp"
+            android:gravity="start"
+            android:background="@color/blue"
+            android:id="@+id/withdrawal_icon_ID"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/todo_invested_imageView"
+            android:src="@drawable/withdrawal_icon2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutProfit"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/withdrawn_constraint_layout"
+        android:layout_alignStart="@+id/withdrawn_constraint_layout"
+        android:layout_alignLeft="@+id/withdrawn_constraint_layout"
+        android:layout_alignEnd="@+id/withdrawn_constraint_layout"
+        android:layout_alignRight="@+id/withdrawn_constraint_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="-2dp"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/pentagon"
+        app:layout_constraintEnd_toEndOf="@+id/withdrawn_constraint_layout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/withdrawn_constraint_layout"
+        app:layout_constraintTop_toBottomOf="@+id/withdrawn_constraint_layout">
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/ProfitAmountTitleTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/total_business_profit"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profit_icon_ID"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/profit_image_view"
+            android:src="@drawable/profit_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.473"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            app:strokeColor="@color/blue"
+            android:background="@color/blue"
+            app:strokeWidth="4dp" />
+
+        <TextView
+            android:gravity="center_horizontal"
+            android:id="@+id/profitAmountValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:hint="@string/profit_value"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/percentageProfitTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/profit_percentage"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+           />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.teboho">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".DisplayPersonalDetails"
+            android:parentActivityName=".MainActivity"
+            />
+        <activity android:name=".AddClientPersonalDetails" />
+        <activity
+            android:name=".DisplayInvestmentWithdrawals2"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DisplayInvestmentWithdrawals"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".ChangeLogin" />
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".profitCurve"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DisplayDebitorsListInner"
+            android:parentActivityName=".DisplayDebitorsList" />
+        <activity
+            android:name=".DisplayDebitorsList"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddInvestmentWithdrawal"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddDebitorExisting"
+            android:parentActivityName=".AddDebitor" />
+        <activity
+            android:name=".AddCreditorInner"
+            android:parentActivityName=".AddCreditor" />
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".AddDebitorInner"
+            android:parentActivityName=".AddDebitor" />
+        <activity
+            android:name=".AddDebitor"
+            android:label="@string/label_addCreditorDebitor"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddCreditor"
+            android:label="@string/label_addCreditorDebitor"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".LoginRequirements">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
