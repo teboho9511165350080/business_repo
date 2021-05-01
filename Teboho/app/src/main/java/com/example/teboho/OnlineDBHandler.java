@@ -52,13 +52,13 @@ public class OnlineDBHandler extends AsyncTask <String, Void, String> {
 
     private String debitorsCreditorsListHelper (String... params)
     {
-        String client_url = "https://businessserver1.000webhostapp.com/test/DynamicList/add_client.php";
+        String client_url = "https://businessserver.000webhostapp.com/test/DynamicList/add_client.php";
 
         if (params[9].equals("false"))
-            client_url = "https://businessserver1.000webhostapp.com/test/DynamicList/update_client.php";
+            client_url = "https://businessserver.000webhostapp.com/test/DynamicList/update_client.php";
 
         if (params[9].equals("delete"))
-            client_url = "https://businessserver1.000webhostapp.com/test/DynamicList/delete_client.php";
+            client_url = "https://businessserver.000webhostapp.com/test/DynamicList/delete_client.php";
 
         String method = params[0];
 
@@ -109,13 +109,13 @@ public class OnlineDBHandler extends AsyncTask <String, Void, String> {
     private String debitorsRecordListHelper (String... params)
     {
 
-        String client_url = "https://businessserver1.000webhostapp.com/test/DebitorsList/add_client_debitor.php";
+        String client_url = "https://businessserver.000webhostapp.com/test/DebitorsList/add_client_debitor.php";
 
         if (params[12].equals("false"))
-            client_url = "https://businessserver1.000webhostapp.com/test/DebitorsList/update_client_debitor.php";
+            client_url = "https://businessserver.000webhostapp.com/test/DebitorsList/update_client_debitor.php";
 
         if (params[12].equals("delete"))
-            client_url = "https://businessserver1.000webhostapp.com/test/DebitorsList/delete_client_debitor.php";
+            client_url = "https://businessserver.000webhostapp.com/test/DebitorsList/delete_client_debitor.php";
 
         String id = params[1];
         String name = params[2];
@@ -168,13 +168,13 @@ public class OnlineDBHandler extends AsyncTask <String, Void, String> {
     private String clientsPersonalInformationListHelper (String... params)
     {
 
-        String client_url = "https://businessserver1.000webhostapp.com/test/PersonalDetailsList/add_personal_details.php";
+        String client_url = "https://businessserver.000webhostapp.com/test/PersonalDetailsList/add_personal_details.php";
 
         if (params[10].equals("false"))
-            client_url = "https://businessserver1.000webhostapp.com/test/PersonalDetailsList/update_personal_details.php";
+            client_url = "https://businessserver.000webhostapp.com/test/PersonalDetailsList/update_personal_details.php";
 
          if (params[10].equals("delete"))
-           client_url = "https://businessserver1.000webhostapp.com/test/PersonalDetailsList/delete_personal_details.php";
+           client_url = "https://businessserver.000webhostapp.com/test/PersonalDetailsList/delete_personal_details.php";
 
         String id = params[1];
         String name = params[2];
