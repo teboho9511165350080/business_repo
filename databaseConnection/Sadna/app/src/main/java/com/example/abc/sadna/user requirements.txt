@@ -1,6 +1,0 @@
-1. After adding investment or withdrawal the app should jump to investment list or withdrawal list respectively...(complete)
-2. Change the color of investment list amounts to green														   ...(complete)
-3. Add the backbutton for the lists aforementioned															   ...(complete)
-4. Make the total number of clients to appear at the toolbar line											   ...(incomplete)
-5. Make the table for client personal details																   ...(incomplete)
-6. Complete the client search functionality																	   ...(incomplete)

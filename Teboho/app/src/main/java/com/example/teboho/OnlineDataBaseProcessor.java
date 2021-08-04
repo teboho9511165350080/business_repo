@@ -133,5 +133,5 @@ public class OnlineDataBaseProcessor {
         cursor.close();
         myDBHandler.close();
     }
-
 }
+

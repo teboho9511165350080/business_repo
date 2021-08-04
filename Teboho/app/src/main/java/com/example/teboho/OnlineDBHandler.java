@@ -77,6 +77,7 @@ public class OnlineDBHandler extends AsyncTask <String, Void, String> {
                 URL url = new URL(client_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setConnectTimeout(1000);
                 httpURLConnection.setDoOutput(true);
                 OutputStream OS = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS, "UTF-8"));
