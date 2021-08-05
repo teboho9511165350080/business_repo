@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
@@ -71,6 +72,31 @@ public class CustomAdapterDebitor extends RecyclerView.Adapter<CustomAdapterDebi
                 activity.startActivityForResult(intent, 1);
             }
         });
+
+        holder.sync_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String method = "add new debitor";
+                String id = clients_list.get(position).getId();
+                String name = clients_list.get(position).getName();
+                String surname = clients_list.get(position).getSurname();
+                String amount1 = clients_list.get(position).getAmountA();
+                String amount2 = clients_list.get(position).getAmountB();
+                String day = clients_list.get(position).getDay();
+                String month = clients_list.get(position).getMonth();
+                String year = clients_list.get(position).getYear();
+                String sync = "true";
+
+                OnlineDBHandler onlineDBHandler = new OnlineDBHandler(context);
+                onlineDBHandler.execute(method, id, name, surname, amount1, amount2, day, month,
+                        year,sync);
+
+                MyDBHandler newHandler = new MyDBHandler(context);
+                newHandler.updateSyncStatus("DebitorsList", id, "true");
+                newHandler.close();
+            }
+        });
     }
 
     @Override
@@ -125,6 +151,7 @@ public class CustomAdapterDebitor extends RecyclerView.Adapter<CustomAdapterDebi
         TextView client_id_txt, client_name_txt, client_surname_txt, client_amount_A_txt,
                 client_amount_B_txt, client_day_txt, client_month_txt, client_year_txt;
         LinearLayout mainLayout;
+        Button sync_button;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -137,6 +164,7 @@ public class CustomAdapterDebitor extends RecyclerView.Adapter<CustomAdapterDebi
             client_month_txt = itemView.findViewById(R.id.client_month_txt);
             client_year_txt = itemView.findViewById(R.id.client_year_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            sync_button = itemView.findViewById(R.id.button_sync);
 
             //Animate the recycle viewer
             translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

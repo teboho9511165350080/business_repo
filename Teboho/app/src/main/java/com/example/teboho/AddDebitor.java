@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -28,7 +29,6 @@ public class AddDebitor extends AppCompatActivity {
     List<Client> clients_list;
     CustomAdapterDebitor customAdapterDebitor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,7 @@ public class AddDebitor extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewAddDebitor);
         add_debitor_button = findViewById(R.id.add_button_debitor);
+
         add_debitor_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

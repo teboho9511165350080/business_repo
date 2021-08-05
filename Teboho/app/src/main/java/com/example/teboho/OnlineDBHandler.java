@@ -30,6 +30,15 @@ public class OnlineDBHandler extends AsyncTask <String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
 
+        if (params[2].indexOf('\'') != -1) {
+            String a = "\'";
+            params[2] = params[2].split(a)[0] + a + a + params[2].split(a)[1];
+        }
+        if (params[3].indexOf('\'') != -1) {
+            String a = "\'";
+            params[3] = params[3].split(a)[0] + a + a + params[3].split(a)[1];
+        }
+
         if (params[0].equals("add new debitor"))
             return debitorsCreditorsListHelper (params);
         else if (params[0].equals("debitors record online"))

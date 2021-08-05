@@ -25,9 +25,9 @@
                 android:text="100"
                 android:textSize="40sp"
                 android:textStyle="bold"
+                tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="12dp"
-                tools:layout_editor_absoluteY="5dp"
-                tools:ignore="MissingConstraints" />
+                tools:layout_editor_absoluteY="5dp" />
 
             <TextView
                 android:id="@+id/client_name_txt"
@@ -76,7 +76,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/client_amount_B_txt"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.641"
+                app:layout_constraintHorizontal_bias="0.531"
                 app:layout_constraintStart_toEndOf="@id/client_year_txt"
                 app:layout_constraintTop_toTopOf="@id/client_id_txt"
                 app:layout_constraintVertical_bias="0.0" />
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="68dp"
-                android:text="TextView"
+                android:text="Text"
                 app:layout_constraintBottom_toBottomOf="@id/client_id_txt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.02"
@@ -98,7 +98,7 @@
                 android:id="@+id/client_month_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="Text"
                 app:layout_constraintBottom_toBottomOf="@id/client_day_txt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.01"
@@ -110,13 +110,28 @@
                 android:id="@+id/client_year_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="Text"
                 app:layout_constraintBottom_toBottomOf="@id/client_month_txt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.01"
                 app:layout_constraintStart_toEndOf="@id/client_month_txt"
                 app:layout_constraintTop_toTopOf="@id/client_month_txt"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/button_sync"
+                android:layout_width="57dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="325dp"
+                android:layout_marginLeft="325dp"
+                android:background="@drawable/button"
+                android:text="SYNC"
+                android:textColor="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/client_id_txt"
+                app:layout_constraintTop_toTopOf="@+id/client_amount_A_txt"
+                app:layout_constraintVertical_bias="0.555"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
