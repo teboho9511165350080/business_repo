@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
@@ -76,6 +77,11 @@ public class CustomAdapterDisplayDebitorsList extends RecyclerView.Adapter<Custo
                 activity.startActivityForResult(intent, 1);
             }
         });
+
+        if (clients_list.get(position).getSync().equals("true"))
+            holder.sync_button.setBackgroundResource(R.drawable.sync_true);
+        else
+            holder.sync_button.setBackgroundResource(R.drawable.sync_false);
     }
 
     @Override
@@ -131,6 +137,7 @@ public class CustomAdapterDisplayDebitorsList extends RecyclerView.Adapter<Custo
                 client_amount_B_txt, client_day_txt, client_month_txt, client_year_txt;
         LinearLayout mainLayout;
         ConstraintLayout innerLayout;
+        Button sync_button;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -144,6 +151,7 @@ public class CustomAdapterDisplayDebitorsList extends RecyclerView.Adapter<Custo
             client_year_txt = itemView.findViewById(R.id.client_year_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             innerLayout = itemView.findViewById(R.id.innerLayout);
+            sync_button = itemView.findViewById(R.id.button_sync);
 
             //Animate the recycle viewer
             translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

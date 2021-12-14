@@ -51,20 +51,6 @@ public class MainActivity extends Activity {
                 plotProfitGraph();
             }
         });
-
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        if (networkInfo == null && !networkInfo.isConnected())
-        {
-            Toast.makeText(this, "Internet Not Available", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            OnlineDataBaseProcessor onlineDataBaseProcessor = new OnlineDataBaseProcessor(
-                    MainActivity.this);
-            onlineDataBaseProcessor.masterUpdateOnlineDatabase("");
-        }
     }
 
     private void plotProfitGraph()

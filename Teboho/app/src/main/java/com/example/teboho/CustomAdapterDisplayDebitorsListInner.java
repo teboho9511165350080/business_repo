@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,13 +32,20 @@ public class CustomAdapterDisplayDebitorsListInner extends RecyclerView.Adapter<
     Activity activity;
     Colors colors = new Colors();
     private ArrayList client_id, client_name, client_surname, client_amountA,
-            client_day, client_month, client_year, debit_status;
+            client_day, client_month, client_year, debit_status, sync_status,
+            client_missed_months, client_interest, client_interest_conf;
     double interest = 0.5 + 1;
 
     Animation translate_anim;
 
-    CustomAdapterDisplayDebitorsListInner(Activity activity, Context context, ArrayList client_id, ArrayList client_name, ArrayList client_surname, ArrayList client_amountA,
-                                          ArrayList client_day, ArrayList client_month, ArrayList client_year, ArrayList debit_status) {
+    CustomAdapterDisplayDebitorsListInner(Activity activity, Context context, ArrayList client_id,
+                                          ArrayList client_name, ArrayList client_surname,
+                                          ArrayList client_amountA,
+                                          ArrayList client_day, ArrayList client_month,
+                                          ArrayList client_year, ArrayList debit_status,
+                                          ArrayList client_missed_months,
+                                          ArrayList client_interest, ArrayList client_interest_conf,
+                                          ArrayList sync_status) {
         this.activity = activity;
         this.context = context;
         this.client_id = client_id;
@@ -48,6 +56,10 @@ public class CustomAdapterDisplayDebitorsListInner extends RecyclerView.Adapter<
         this.client_month = client_month;
         this.client_year = client_year;
         this.debit_status = debit_status;
+        this.client_missed_months = client_missed_months;
+        this.client_interest = client_interest;
+        this.client_interest_conf = client_interest_conf;
+        this.sync_status = sync_status;
     }
 
     @NonNull
@@ -80,6 +92,40 @@ public class CustomAdapterDisplayDebitorsListInner extends RecyclerView.Adapter<
             holder.innerLayout.setBackgroundColor(Color.parseColor(colors.getColor("International orange")));
         else
             holder.innerLayout.setBackgroundColor(Color.parseColor(colors.getColor("Dark lemon lime")));
+
+        holder.sync_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String method = "debitors record online";
+                String id = String.valueOf(client_id.get(position));
+                String name = String.valueOf(client_name.get(position));
+                String surname = String.valueOf(client_surname.get(position));
+                String amount1 = String.valueOf(client_amountA.get(position));
+                String day = String.valueOf(client_day.get(position));
+                String month = String.valueOf(client_month.get(position));
+                String year = String.valueOf(client_year.get(position));
+                String debit_state = String.valueOf(debit_status.get(position));
+                String monthMissed = String.valueOf(client_missed_months.get(position));
+                String interest = String.valueOf(client_interest.get(position));
+                String interest_conf = String.valueOf(client_interest_conf.get(position));
+                String sync = String.valueOf(sync_status.get(position));
+
+                OnlineDBHandler onlineDBHandler = new OnlineDBHandler(context);
+                onlineDBHandler.execute(method, id, name, surname, amount1, day, month,
+                        year, debit_state, monthMissed, interest, interest_conf, sync);
+
+                MyDBHandler newHandler = new MyDBHandler(context);
+                if (onlineDBHandler.checkNetworkConnection())
+                    newHandler.updateSyncStatus("DebitorsRecord", id, "true");
+                newHandler.close();
+            }
+        });
+
+        if (String.valueOf(sync_status.get(position)).equals("true"))
+            holder.sync_button.setBackgroundResource(R.drawable.sync_true);
+        else
+            holder.sync_button.setBackgroundResource(R.drawable.sync_false);
     }
 
     @Override
@@ -90,9 +136,11 @@ public class CustomAdapterDisplayDebitorsListInner extends RecyclerView.Adapter<
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView client_id_txt, client_name_txt, client_surname_txt, client_amount_A_txt,
-                client_day_txt, client_month_txt, client_year_txt, debit_status_txt;
+                client_amount_B_txt, client_day_txt, client_month_txt, client_year_txt,
+                debit_status_txt;
         LinearLayout mainLayout;
         ConstraintLayout innerLayout;
+        Button sync_button;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,6 +154,7 @@ public class CustomAdapterDisplayDebitorsListInner extends RecyclerView.Adapter<
             debit_status_txt = itemView.findViewById(R.id.client_amount_B_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             innerLayout = itemView.findViewById(R.id.innerLayout);
+            sync_button = itemView.findViewById(R.id.button_sync);
 
             //Animate the recycle viewer
             translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

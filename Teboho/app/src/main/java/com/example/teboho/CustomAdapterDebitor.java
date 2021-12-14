@@ -93,10 +93,16 @@ public class CustomAdapterDebitor extends RecyclerView.Adapter<CustomAdapterDebi
                         year,sync);
 
                 MyDBHandler newHandler = new MyDBHandler(context);
-                newHandler.updateSyncStatus("DebitorsList", id, "true");
+                if (onlineDBHandler.checkNetworkConnection())
+                    newHandler.updateSyncStatus("DebitorsList", id, "true");
                 newHandler.close();
             }
         });
+
+        if (clients_list.get(position).getSync().equals("true"))
+            holder.sync_button.setBackgroundResource(R.drawable.sync_true);
+        else
+            holder.sync_button.setBackgroundResource(R.drawable.sync_false);
     }
 
     @Override

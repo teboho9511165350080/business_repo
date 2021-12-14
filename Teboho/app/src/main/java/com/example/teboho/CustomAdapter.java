@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
@@ -71,6 +72,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 activity.startActivityForResult(intent, 1);
             }
         });
+
+        if (clients_list.get(position).getSync().equals("true"))
+        {
+            holder.sync_button.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -125,6 +131,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         TextView client_id_txt, client_name_txt, client_surname_txt, client_amount_A_txt,
         client_amount_B_txt, client_day_txt, client_month_txt, client_year_txt;
         LinearLayout mainLayout;
+        Button sync_button;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -137,6 +144,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             client_month_txt = itemView.findViewById(R.id.client_month_txt);
             client_year_txt = itemView.findViewById(R.id.client_year_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            sync_button = itemView.findViewById(R.id.button_sync);
 
             //Animate the recycle viewer
             translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

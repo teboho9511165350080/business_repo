@@ -120,12 +120,11 @@
 
             <Button
                 android:id="@+id/button_sync"
-                android:layout_width="57dp"
+                android:layout_width="50dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="325dp"
                 android:layout_marginLeft="325dp"
                 android:background="@drawable/button"
-                android:text="SYNC"
                 android:textColor="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/client_id_txt"

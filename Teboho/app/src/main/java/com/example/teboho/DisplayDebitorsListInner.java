@@ -22,11 +22,14 @@ import java.util.ArrayList;
 
 public class DisplayDebitorsListInner extends AppCompatActivity {
 
-    String id, name, surname, amountA, amountB, payDay, payMonth, payYear;
+    String id, name, surname, amountA, payDay, payMonth, payYear, debit_status;
+    String monthMissed, interest, interest_conf, sync;
     RecyclerView recyclerView;
     MyDBHandler myDB;
     ArrayList<String> client_id, client_name, client_surname,
-            client_amount_A, client_pay_day, client_pay_month, client_pay_year, debit_status;
+            client_amount_A, client_pay_day, client_pay_month, client_pay_year,
+            client_debit_status, client_month_missed, client_interest, client_interest_conf,
+            client_sync;
     CustomAdapterDisplayDebitorsListInner customAdapterDisplayDebitorsListInner;
 
 
@@ -45,13 +48,20 @@ public class DisplayDebitorsListInner extends AppCompatActivity {
         client_pay_day = new ArrayList<>();
         client_pay_month = new ArrayList<>();
         client_pay_year = new ArrayList<>();
-        debit_status = new ArrayList<>();
+        client_debit_status = new ArrayList<>();
+        client_month_missed = new ArrayList<>();
+        client_interest = new ArrayList<>();
+        client_interest_conf = new ArrayList<>();
+        client_sync = new ArrayList<>();
 
         getIntentDataDisplayDebitorsListInner();
         storeDataInArraysDisplayDebitorsListInner();
-        customAdapterDisplayDebitorsListInner = new CustomAdapterDisplayDebitorsListInner(DisplayDebitorsListInner.this,
-                this,  client_id, client_name, client_surname,
-                client_amount_A, client_pay_day, client_pay_month, client_pay_year, debit_status);
+
+        customAdapterDisplayDebitorsListInner = new CustomAdapterDisplayDebitorsListInner(
+                DisplayDebitorsListInner.this, this,  client_id, client_name, client_surname,
+                client_amount_A, client_pay_day, client_pay_month, client_pay_year,
+                client_debit_status, client_month_missed, client_interest, client_interest_conf, client_sync);
+
         recyclerView.setAdapter(customAdapterDisplayDebitorsListInner);
         recyclerView.setLayoutManager(new LinearLayoutManager(DisplayDebitorsListInner.this));
     }
@@ -75,7 +85,11 @@ public class DisplayDebitorsListInner extends AppCompatActivity {
                         client_pay_day.add(cursor.getString(4));
                         client_pay_month.add(cursor.getString(5));
                         client_pay_year.add(cursor.getString(6));
-                        debit_status.add(cursor.getString(7));
+                        client_debit_status.add(cursor.getString(7));
+                        client_month_missed.add(cursor.getString(8));
+                        client_interest.add(cursor.getString(9));
+                        client_interest_conf.add(cursor.getString(10));
+                        client_sync.add(cursor.getString(11));
                     }
                 }while(cursor.moveToPrevious());
             }

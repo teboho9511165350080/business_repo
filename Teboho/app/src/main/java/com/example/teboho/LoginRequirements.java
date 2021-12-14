@@ -21,13 +21,26 @@ public class LoginRequirements extends AppCompatActivity {
 
     MyDBHandler myDB = new MyDBHandler(LoginRequirements.this);
     FinanceHelper financeHelper = new FinanceHelper(LoginRequirements.this);
+    OnlineDBHandler onlineDBHandler1 = new OnlineDBHandler(LoginRequirements.this);
+    OnlineDBHandler onlineDBHandler2 = new OnlineDBHandler(LoginRequirements.this);
+    OnlineDBHandler onlineDBHandler3 = new OnlineDBHandler(LoginRequirements.this);
+    OnlineDBHandler onlineDBHandler4 = new OnlineDBHandler(LoginRequirements.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_requirements);
 
-        myDB.automatedPassword();
+        if (myDB.automatedPassword())
+        {
+            //the app is installed on the new device
+            //all the data from online database should be collect and stored on local database
+
+            onlineDBHandler1.execute("new installation debitors data","3434","4543","57776");
+            onlineDBHandler2.execute("new installation debitors:creditors data","3434","4543","57776");
+            onlineDBHandler3.execute("new installation personal data","3434","4543","57776");
+            onlineDBHandler4.execute("new installation creditors data", "343","233","324");
+        }
         financeHelper.autoUpdatePaymentMissed();
 
         loginButton = (Button) findViewById(R.id.buttonLogin);

@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/sync_new" />
+        android:src="@drawable/sync" />
 
     <Spinner
         android:id="@+id/menuContent"

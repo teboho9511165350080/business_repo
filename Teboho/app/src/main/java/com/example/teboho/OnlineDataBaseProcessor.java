@@ -15,6 +15,38 @@ public class OnlineDataBaseProcessor {
         updateOnlineDataBase(syncronize);
         updateOnlineDataBaseDebitorsRecord(syncronize);
         updateOnlineDataBasePersonalDetailsList(syncronize);
+        updateOnlineDataBaseCreditorsRecord(syncronize);
+    }
+
+    protected void updateOnlineDataBaseCreditorsRecord(String syncronize)
+    {
+        //inserting a new person
+        MyDBHandler myDBHandler = new MyDBHandler(context);
+        Cursor cursor = myDBHandler.readAllDataCredit();
+
+        if (cursor.moveToFirst())
+        {
+            do{
+                if (!cursor.getString(7).equals("true")|| syncronize.equals("All")) //the is data that needs to be sync to online database
+                {
+                    OnlineDBHandler onlineDBHandler = new OnlineDBHandler(context);
+
+                    onlineDBHandler.execute("add new creditor", cursor.getString(0), cursor.getString(1),
+                            cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
+                            cursor.getString(6), cursor.getString(7));
+
+                    MyDBHandler newHandler = new MyDBHandler(context);
+                    if (onlineDBHandler.checkNetworkConnection())
+                    {
+                        newHandler.updateSyncStatus("CreditorsList", cursor.getString(0), "true");
+                    }
+
+                    newHandler.close();
+                }
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        myDBHandler.close();
     }
 
     protected void updateOnlineDataBase(String syncronize)
@@ -30,26 +62,20 @@ public class OnlineDataBaseProcessor {
                 {
                     OnlineDBHandler onlineDBHandler = new OnlineDBHandler(context);
 
-                    String method = "add new debitor";
-                    String id = cursor.getString(0);
-                    String name = cursor.getString(1);
-                    String surname = cursor.getString(2);
-                    String amount1 = cursor.getString(3);
-                    String amount2 = cursor.getString(4);
-                    String day = cursor.getString(5);
-                    String month = cursor.getString(6);
-                    String year = cursor.getString(7);
-                    String sync = cursor.getString(8);
+                    onlineDBHandler.execute("add new debitor", cursor.getString(0), cursor.getString(1),
+                            cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
+                            cursor.getString(6), cursor.getString(7), cursor.getString(8));
 
-                    onlineDBHandler.execute(method, id, name, surname, amount1, amount2, day, month,
-                            year,sync);
                     MyDBHandler newHandler = new MyDBHandler(context);
-                    newHandler.updateSyncStatus("DebitorsList", id, "true");
+
+                    if (onlineDBHandler.checkNetworkConnection())
+                    {
+                        newHandler.updateSyncStatus("DebitorsList", cursor.getString(0), "true");
+                    }
                     newHandler.close();
                 }
             }while(cursor.moveToNext());
         }
-
         cursor.close();
         myDBHandler.close();
     }
@@ -86,7 +112,12 @@ public class OnlineDataBaseProcessor {
                             debit_status, debit_payment_month_missed, interest, interest_confirmation,
                             sync);
                     MyDBHandler newHandler = new MyDBHandler(context);
-                    newHandler.updateSyncStatus("DebitorsRecord", id, "true");
+
+                    if (onlineDBHandler.checkNetworkConnection())
+                    {
+                        newHandler.updateSyncStatus("DebitorsRecord", id, "true");
+                    }
+
                     newHandler.close();
                 }
             }while(cursor.moveToNext());
@@ -98,7 +129,6 @@ public class OnlineDataBaseProcessor {
 
     protected void updateOnlineDataBasePersonalDetailsList(String syncronize)
     {
-        //inserting a new person
         MyDBHandler myDBHandler = new MyDBHandler(context);
         Cursor cursor = myDBHandler.readAllDataClientPersonalDetails();
 
@@ -123,8 +153,10 @@ public class OnlineDataBaseProcessor {
 
                     onlineDBHandler.execute(method, id, name, surname, DOB, contact, gender, address,
                             employment, income, sync);
+
                     MyDBHandler newHandler = new MyDBHandler(context);
-                    newHandler.updateSyncStatus("PersonalDetails", id, "true");
+                    if (onlineDBHandler.checkNetworkConnection())
+                        newHandler.updateSyncStatus("PersonalDetails", id, "true");
                     newHandler.close();
                 }
             }while(cursor.moveToNext());

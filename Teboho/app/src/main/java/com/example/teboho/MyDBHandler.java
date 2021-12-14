@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -192,6 +194,28 @@ public class MyDBHandler extends SQLiteOpenHelper {
         //db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_PERSONAL_DETAILS);
         onCreate(db);
     }
+
+    void addDebitor (int id, String name, String surname, double amount1, double amount2, int day,
+                     int month, int year)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put (COLUMN_ID, id);
+        cv.put (COLUMN_NAME, name);
+        cv.put (COLUMN_SURNAME, surname);
+        cv.put (COLUMN_AMOUNT1, amount1);
+        cv.put (COLUMN_AMOUNT2, amount2);
+        cv.put (COLUMN_DAY, day);
+        cv.put (COLUMN_MONTH, month);
+        cv.put (COLUMN_YEAR, year);
+        cv.put (COLUMN_SYNC_INFO, "new");
+
+        long result = db.insert (TABLE_NAME, null, cv);
+
+        db.close();
+    }
+
     void addDebitor (String name, String surname, double amount1, double amount2, int day,
                      int month, int year, double interest, boolean note)
     {
@@ -251,6 +275,28 @@ public class MyDBHandler extends SQLiteOpenHelper {
         {
             Toast.makeText(context, "Client personal details added succesffully!", Toast.LENGTH_SHORT).show();
         }
+
+        db.close();
+    }
+
+    void addClientPersonalDetails (int id, String name, String surname, String contact, String identity, String address,
+                                   double monthlyIncome, String employment, String gender)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put (COLUMN_ID_PERSONAL_DETAILS, id);
+        cv.put (COLUMN_NAME_PERSONAL_DETAILS, name);
+        cv.put (COLUMN_SURNAME_PERSONAL_DETAILS, surname);
+        cv.put (COLUMN_CONTACT_PERSONAL_DETAILS, contact);
+        cv.put (COLUMN_DOB_PERSONAL_DETAILS, identity);
+        cv.put (COLUMN_HOUSE_ADDRESS_PERSONAL_DETAILS, address);
+        cv.put (COLUMN_MONTHLY_INCOME_PERSONAL_DETAILS, monthlyIncome);
+        cv.put(COLUMN_SYNC_INFO_PERSONAL_DETAILS, "new");
+        cv.put (COLUMN_EMPLOYMENT_PERSONAL_DETAILS, employment);
+        cv.put (COLUMN_GENDER_PERSONAL_DETAILS, gender);
+
+        long result = db.insert (TABLE_NAME_PERSONAL_DETAILS, null, cv);
 
         db.close();
     }
@@ -390,7 +436,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    void automatedPassword()
+    boolean automatedPassword()
     {
         if (!isTableNotEmpty(TABLE_NAME_SECURITY)) {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -411,7 +457,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
             }
 
             db.close();
+            return true;
         }
+        return false;
     }
 
     boolean isTableNotEmpty(String tableName)
@@ -490,6 +538,30 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    void addDebitRecord(int id, String name, String surname, double amount, int day, int month, int year, String status,
+                        int missed_months, double interest, String interest_conf, String sync)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ID_DEBITORS, id);
+        cv.put (COLUMN_NAME_DEBITORS, name);
+        cv.put (COLUMN_SURNAME_DEBITORS, surname);
+        cv.put (COLUMN_AMOUNT1_DEBITORS, amount);
+        cv.put (COLUMN_DAY_DEBITORS, day);
+        cv.put (COLUMN_MONTH_DEBITORS, month);
+        cv.put (COLUMN_YEAR_DEBITORS, year);
+        cv.put(COLUMN_STATUS_DEBITORS, "unpaid");
+        cv.put(COLUMN_MISSED_MONTHS_DEBITORS, missed_months);
+        cv.put (COLUMN_INTEREST_APPLIED_DEBITORS, interest);
+        cv.put(COLUMN_INTEREST_APPLIED_MISSED_MONTH_CONFIRMATION_DEBITORS, interest_conf);
+        cv.put(COLUMN_SYNC_INFO_DEBITORS, sync);
+
+        long result = db.insert (TABLE_NAME_DEBITORS, null, cv);
+
+        db.close();
+    }
+
     void  addDebitRecord (String name, String surname, double amount, double interest, boolean note)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -524,6 +596,26 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    void addCreditRecord(int id, String name, String surname, double amount, int day, int month,
+                         int year, String sync)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ID_CREDITORS, id);
+        cv.put (COLUMN_NAME_CREDITORS, name);
+        cv.put (COLUMN_SURNAME_CREDITORS, surname);
+        cv.put (COLUMN_AMOUNT1_CREDITORS, amount);
+        cv.put (COLUMN_DAY_CREDITORS, day);
+        cv.put (COLUMN_MONTH_CREDITORS, month);
+        cv.put (COLUMN_YEAR_CREDITORS, year);
+        cv.put(COLUMN_SYNC_INFO_CREDITORS, sync);
+
+        long result = db.insert (TABLE_NAME_CREDITORS, null, cv);
+
+        db.close();
+    }
+
     void addCreditRecord (String name, String surname, double amount)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -537,14 +629,13 @@ public class MyDBHandler extends SQLiteOpenHelper {
         cv.put (COLUMN_DAY_CREDITORS, date.getCurrentDay());
         cv.put (COLUMN_MONTH_CREDITORS, date.getCurrentMonth());
         cv.put (COLUMN_YEAR_CREDITORS, date.getCurrentYear());
+        cv.put(COLUMN_SYNC_INFO_CREDITORS, "false");
         long result = db.insert (TABLE_NAME_CREDITORS, null, cv);
 
-        if (result == -1) {
-            Toast.makeText(context, "Failed to add client credit record", Toast.LENGTH_SHORT).show();
-        }else
-        {
-            Toast.makeText(context, "Added successfully to credit record!", Toast.LENGTH_SHORT).show();
-        }
+        if (result == -1)
+            Toast.makeText(context, "Failed to add client payment offline", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(context, "Added successfully client payment offline", Toast.LENGTH_SHORT).show();
         db.close();
     }
 
@@ -696,6 +787,11 @@ public class MyDBHandler extends SQLiteOpenHelper {
             cv.put(COLUMN_SYNC_INFO, sync);
             result = db.update(TABLE_NAME, cv, "_id=?", new String[]{id});
         }
+        else if (tableName.equals("CreditorsList"))
+        {
+            cv.put(COLUMN_SYNC_INFO_CREDITORS, sync);
+            result = db.update(TABLE_NAME_CREDITORS, cv, "_id_creditor=?", new String[]{id});
+        }
         else if (tableName.equals("DebitorsRecord"))
         {
             cv.put(COLUMN_SYNC_INFO_DEBITORS, sync);
@@ -731,6 +827,19 @@ public class MyDBHandler extends SQLiteOpenHelper {
     Cursor readAllDataInvestment()
     {
         String query = "SELECT * FROM " + TABLE_NAME_INVESTMENT;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null)
+        {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor readAllDataCredit()
+    {
+        String query = "SELECT * FROM " + TABLE_NAME_CREDITORS;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;

@@ -11,6 +11,7 @@ public class Client{
     String AmountA, AmountB;
     String day, month, year;
     String id;
+    String sync;
 
     private Boolean newClient = true;
     private Boolean clientRegistered = false;
@@ -41,7 +42,7 @@ public class Client{
     }
 
     Client (String id, String name, String surname, String AmountA, String AmountB,
-            String day, String month, String year){
+            String day, String month, String year, String sync){
 
         this.id = id;
         this.name = name;
@@ -51,6 +52,20 @@ public class Client{
         this.day = day;
         this.month = month;
         this.year = year;
+        this.sync = sync;
+    }
+
+    Client (String id, String name, String surname, String AmountA,
+            String day, String month, String year, String sync){
+
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.AmountA = AmountA;
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        this.sync = sync;
     }
 
     public String getId() {
@@ -75,10 +90,12 @@ public class Client{
         return address;
     }
 
-    public String getAmountB() { return AmountB; };
-    public String getDay(){ return day; };
-    public String getMonth(){ return month; };
-    public String getYear(){return year; };
+    public String getAmountB() { return AmountB; }
+    public String getDay(){ return day; }
+    public String getMonth(){ return month; }
+    public String getYear(){return year; }
+
+    public String getSync(){return sync;}
 
     public double getHighestDebit() {
         return HighestDebit;
